@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+\usepackage{lingmacros}
+\usepackage{tree-dvips}
+\usepackage{textcomp}
+\begin{document}
+\title{Udacity Data Analyst Project 4: Wrangling}
+\author{J. W. Thacker}
+\maketitle
+
+\section{Introduction}
+In this project, the 5000+ tweets and their corresponding data from twitter are downloaded from Twitter. These data that were downloaded needed to be cleaned (both for quality and tidiness) and this report describes the efforts that were needed in order to clean the dataset.
+
+\section{Gathering\label{g}}
+All data wrangling efforts always start with gathering the data. For this project, the gathering stage started with downloading a .csv (the archive of tweets from twitter from the which contains things like the text of the tweet etc) and a .tsv (the predictions of the breed of dog from each dog) from the Udacity website. This was done using the python requests library and the code that does this can be seen in wrangle\textunderscore act.ipynb.
+
+\section{Assessment}
+This section will contain the most pertinent of the data cleaning process that was used in this project. All code for these cleaning steps can be found in the python notebook listed in section \ref{g}.
+\begin{table}
+	\begin{enumerate}
+	\caption{List of Quality Issues that were fixed} \label{list1}
+		\item 'id' (in retweet list) should be a string since ids can't be added together.
+		\item The 'id' (in retweet list) column name should be renamed to 'tweet id' to kept consistent with the 'twitter archive' dataset.
+		\item 'id' (in twitter archive) should be a string since ids can't be added together.
+		\item entries 487 and 1592 (in image preds) are misclassified as a food.
+		\item entries 487 and 1592 (in image preds) are duplicated; delete one of them.
+		\item The tweet URLs need to be removed from the text of the tweet.
+		\item Edit timestamp to a datetime object.
+		\item Remove tweets that are retweets from the DataFrame.
+		\item Remove columns with mostly NaNs and drop the rows with missing URLs (there are only 59 or them).
+	\end{enumerate}
+\end{table}
+
+\begin{table}
+	\begin{enumerate}
+	\caption{List of Tidiness Issues that were fixed} \label{list2}
+		\item Get rid of the columns relating to "dog type", e.g doggo etc, as there are serious classs inbalance issues.
+		\item Combine the twitter archive cop dataset with the retweet list by using an inner join.
+	\end{enumerate}
+\end{table}
+
+
+
+\end{document}
